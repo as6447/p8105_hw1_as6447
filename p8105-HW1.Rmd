@@ -1,8 +1,8 @@
 ---
-title: "Homework Report #1"
+title: "Homework Report"
 author: "Armaan Sodhi"
 date: "2022-09-23"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -16,24 +16,25 @@ data("penguins", package = "palmerpenguins")
 
 ##1.1:Write a short description of the penguins data set in the markdown folder
 
-Include: data in this data set, including names / values of important variables The size of the data set (using nrow and ncol) The mean flipper length Solution: The data set 'penguins' contains 344 observations and 8 variables(344 rows and 9 columns). 
+Include: data in this data set, including names / values of important variables The size of the data set (using nrow and ncol) The mean flipper length Solution: The data set 'penguins' contains 344 observations and 8 variables(344 rows and 9 columns).
 
-SOLUTION: 
-```{r-Problem 1-part 1}
-  head(penguins) 
-  ncol(penguins)
-  nrow(penguins)
-  mean(penguins$flipper_length_mm,na.rm = TRUE)
-  mean(penguins$bill_depth_mm, na.rm = TRUE)
+
+```{Problem 1.1}
+ head(penguins)    
+ncol(penguins)   
+nrow(penguins)   
+mean(penguins$flipper_length_mm,na.rm = TRUE)   
+mean(penguins$bill_depth_mm, na.rm = TRUE)
 ```
 
-These variables include 'Species, island', 'bill_depth_mm', 'bill_length_mm', 'flipper_length_mm','body_mass_g', 'sex' and 'year'. Important variables would include 'flipper_length_mm', body_mass_g, and 'bill_depth_mm'. 
+
+These variables include 'Species, island', 'bill_depth_mm', 'bill_length_mm', 'flipper_length_mm','body_mass_g', 'sex' and 'year'. Important variables would include 'flipper_length_mm', body_mass_g, and 'bill_depth_mm'.
 
 The mean flipper length was found to be 200.9152 mm. The mean bill depth was found to be 17.15117 mm. The mean body mass was found to be 4201.754 grams.
 
 ##1.2: Do a scatterplot bill_length_mm vs flipper_length_mm and Export your first scatter plot to your project directory using ggsave
 
-```{Problem 1-part2}
+```{Problem 1.2}
   ggplot(penguins,aes(color = flipper_length_mm, x = bill_length_mm,y = flipper_length_mm)) + geom_point()
  ggsave("scatter_plot.pdf", height = 4, width = 6)
 ```
@@ -51,7 +52,7 @@ HW_df = tibble(
   )
 ```
 
-##2.2:Try to take the mean of each variable in your dataframe. What works and what doesn’t?
+##2.2:Try to take the mean of each variable in your dataframe. What works and what doesn't?
 
 ```{Problem 2.2}
 mean(pull(HW_df, sample_norm))
@@ -60,8 +61,7 @@ mean(pull(HW_df, vec_char))
 mean(pull(HW_df, vec_fac))
 ```
 
-We could only run the mean on the variables that are numeric. 
-This would include our logic variable as it is still contains numeric values due to the logic variable simply placing a condition on our previous numeric variable (whether a value is greater than or less than 0)  
+We could only run the mean on the variables that are numeric. This would include our logic variable as it is still contains numeric values due to the logic variable simply placing a condition on our previous numeric variable (whether a value is greater than or less than 0)
 
 ##2.3: Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (please show this chunk but not the output). What happens, and why? Does this help explain what happens when you try to take the mean?
 
@@ -73,5 +73,4 @@ as.numeric(pull(HW_df, vec_fac))
 
 When we utilize the 'as.numeric' conversion it converts our logic variable to 1 and 0 as we originally had a binary outcome (Either the value was greater than 0 or it was not).
 
-Our character variable is unable to be read and simply reads N/A as there is no pattern in our character variables. Our factor variable was changed to 1,2, and 3 as those are the three unique levels
-These explain why we cannot take the mean of the character and factor variables as they are not based upon numeric values but are based on non-calculable characters.
+Our character variable is unable to be read and simply reads N/A as there is no pattern in our character variables. Our factor variable was changed to 1,2, and 3 as those are the three unique levels These explain why we cannot take the mean of the character and factor variables as they are not based upon numeric values but are based on non-calculable characters.
